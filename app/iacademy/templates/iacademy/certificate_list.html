@@ -1,0 +1,65 @@
+{% extends 'iacademy/base.html' %}
+{% block content %}
+
+{% if is_ip_different %}
+    <div class="alert alert-danger" role="alert">
+        <h3>ATTENTIONE! Il tuo ultimo accesso è avvenuto da un IP differente.</h3>
+    </div>
+    {% endif %}
+
+    <h3 class="ml-3 p-2">Lista Certificati</h3>
+    <div class="conteiner ml-3 mr-3">
+        <hr>
+    </div>
+
+  {% if user.is_authenticated %}
+  <div class="conteiner mt-3 mr-3 ml-3">
+    <a class="btn btn-success btn-block" href="{% url 'certificate-create' %}">+ Crea nuovo certificato</a>
+  </div>
+  {% endif %}
+
+
+
+
+    <div class="conteiner d-flex table mt-3 p-3">
+      <table class="table table-hover">
+        <thead>
+          <tr style="background-color: #355761;">
+            <th scope="col">Id</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Cognome</th>
+            <th scope="col">Votazione</th>
+            <th scope="col">Data di conseguimento</th>
+            <th scope="col">Specializzazione</th>
+            <th scope="col">Id transazione</th>
+            <th scope="col">Dettagli</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if request.user.is_superuser %}
+          {% for object in certificate.all %}
+          <tr>
+            <th scope="row" style="color: #000000;">{{ object.id }}</th>
+            <td>{{ object.name }}</td>
+            <td>{{ object.surname }}</td>
+            <td>{{ object.grade }}</td>
+            <td>{{ object.date_of_creation }}</td>
+            <td>{{ object.subject }}</td>
+            <td>{{ object.transaction_id }}</td>
+            <td><a href="{% url 'certificate-detail' pk=object.pk %}" class="btn btn-sm btn-info">Visualizza</td>
+          </tr>
+          {% endfor %}
+          {% endif %}
+        </tbody>
+      </table>
+  </div>
+
+
+
+  <div class="container ml-3 mr-3">
+    <a href="{% url 'index' %}" class="btn btn-dark btn-sm">&laquo; Torna alla Home</a>
+  </div>
+</div>
+
+    
+{% endblock %}

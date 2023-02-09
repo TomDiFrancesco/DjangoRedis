@@ -1,0 +1,30 @@
+{% extends 'iacademy/base.html' %}
+{% block content %}
+
+{% if object %}
+
+    <div class="conteiner d-flex card border-primary mb-3 mt-5 ml-auto mr-auto p-3" style="max-width: 80rem;">
+      <div class="card-body text-primary">
+        <h5 class="card-title">Certificazione in {{object.subject}}</h5>
+        <hr>
+        <p class="card-text">Nome: {{ object.name }}</p>
+        <p class="card-text">Cognome: {{ object.surname }}</p>
+        <p class="card-text">Data di nascita: {{ object.date_of_birth }}</p>
+        <p class="card-text">Voto: {{ object.grade }}</p>
+        <p class="card-text">Date di conseguimento: {{ object.date_of_creation }}</p>
+        <p class="card-text">Rilasciato da: {{ object.author }}</p>
+        <p class="card-text">TxID: {{ object.transaction_id }}</p>
+      </div>
+      <a href="{% url 'certificate-list' %}" class="btn btn-outline-info btn-sm">&laquo; Torna alla lista dei certificati</a>
+    </div>
+    
+    {% else %}
+        <div class="alert alert-danger" role="alert">
+            There isn't any certificate with this transaction hash, please check that you typed correct and try again.
+        </div>
+    {% endif %}
+
+
+
+
+{% endblock %}

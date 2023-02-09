@@ -1,0 +1,17 @@
+{% extends 'iacademy/base.html' %}
+{% block content %}
+{% load static %}
+
+
+    <div class="container text-center mx-auto">
+        <div class="conteiner-fluid text-center">
+            <img src="{% static 'images/logo.jpg' %}" style="max-width: 200px; max-height: 200px;" alt="logo">
+          </div>
+        <h1>Ti sei disconnesso!</h1>
+        <hr>
+        <div class="container p-5">
+            <a href="{% url 'index' %}" class="btn btn-outline-primary">Vai alla Home</a>
+            <a href="{% url 'login' %}" class="btn btn-outline-primary">Accedi di nuovo</a>
+        </div>
+    </div>
+{% endblock %}

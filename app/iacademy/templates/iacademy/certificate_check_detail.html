@@ -1,0 +1,54 @@
+{% extends 'iacademy/base.html' %}
+{% load static %}
+
+{% block content %}
+    {% if object %}
+<div class="card container-sm mt-3 p-5 d-flex mx-auto" style="background-color: #f2f2f2;">
+    <div class="card-header card container-sm mt-3 d-flex mx-auto" style="background-color: #355761;">
+        <h3 class="card-title mt-3" style="color: beige;">Certificato di {{object.name}} {{object.surname}} in {{object.subject}}</h3>
+    </div>
+
+    <div class="accordion" id="accordionExample">
+        <div class="card">
+          <div class="card-header" id="headingOne">
+            <h2 class="mb-0">
+              <h5>Date di conseguimento: {{ object.date_of_creation }}</h5>
+              <h5>Voto: {{ object.grade }}</h5>
+              <h6>Assegnato da: {{ object.author }}</h6><hr>
+
+              <button class="btn btn-link btn-block dropdown-toggle" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                Dettagli Transazione
+              </button>
+            </h2>
+          </div>
+      
+          <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div class="card-body">
+                <p>TxID: {{ object.transaction_id }}</p>
+                <p>Block hash: {{ transaction.blockHash }}</p><hr>
+                <p>Block number: {{ transaction.blockNumber }}</p>
+                <p>From: {{ transaction.from }}</p>
+                <p>To: {{ transaction.to }}</p>
+                <p>Gas: {{ transaction.gas }}</p>
+                <p>Gas price: {{ transaction.gasPrice }}</p><hr>
+                <p>Input: {{ transaction.input }}</p><hr>
+                <p>Transaction index: {{ transaction.transactionIndex }}</p>
+            </div>
+          </div>
+        </div>
+    </div>
+
+
+    {% else %}
+        <div class="alert alert-danger" role="alert">
+            There isn't any certificate with this transaction hash, please check that you typed correct and try again.
+        </div>
+    {% endif %}
+
+    <div class="container d-flex mt-2 mb-1">
+      <a href="{% url 'index' %}" class="btn btn-block btn-dark btn-sm">&laquo; Torna alla Home</a>
+    </div>
+           
+
+        
+{% endblock content%}

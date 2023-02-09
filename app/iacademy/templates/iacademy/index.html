@@ -1,0 +1,31 @@
+{% extends 'iacademy/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="conteiner-fluid text-center">
+  <img src="{% static 'images/logo.jpg' %}" style="max-width: 300px; max-height: 300px;" alt="logo">
+</div>
+
+
+
+
+
+
+  <div class="card-header text-white mt-5" style="background-color: #f2f2f2;">
+    <h1 class="ml-3 p-3" style="text-align: center">Cerca il tuo certificato</h1>
+    <div class="card mx-auto" style="width: 60rem; background-color: #f2f2f2; border-color: #f2f2f2;">
+        <div class="card-body">
+            <form method="POST" action="{% url 'certificate-check' %}">
+                {% csrf_token %}
+                <input type="text" class="form-control w-100" name="hash" placeholder="Inserisci il tuo codice hash">
+                <button type="submit" class="btn btn-primary btn-block mt-3">Cerca</button>
+            </form>
+        </div>
+      </div>
+
+      
+      
+
+{% endblock %}
